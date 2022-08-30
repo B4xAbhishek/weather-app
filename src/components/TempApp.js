@@ -15,6 +15,37 @@ function TempApp() {
         fetchApi();
     },[search])//We are passing second parameter with dependency in useEffect bcoz as the dependency changes ie the search changes it should render the component only once and should stop the furter execution.
 
+    const options = [
+        {
+          value: '',
+          label: '-- Select Country--',
+        },
+        {
+          value: 'Patna',
+          label: 'Patna',
+        },
+        {
+          value: 'Sweden',
+          label: 'Sweden',
+        },
+        {
+          value: 'Norway',
+          label: 'Norway',
+        },
+        {
+          value: 'Kolkata',
+          label: 'Kolkata',
+        },
+        
+      ]
+
+    const selectOptions = options.map(({ value, label }) => (
+        <option key={label} value={value}>
+          {' '}
+          {label}
+        </option>
+      ))
+
     return (
     <>
     <div className='box'>
@@ -22,6 +53,17 @@ function TempApp() {
             <input type="search" className="inputField" value={search} onChange={(e)=> searchCity(e.target.value)}/>
         </div>
   
+        <div>
+          <label htmlFor='country' className="inputField">Country DropDown</label> <br />
+          <select
+            name='country'
+            onChange={(e) => searchCity(e.target.value)}
+            id='country'
+            // value={'country'}
+          >
+            {selectOptions}
+          </select>
+        </div>
 {!city ? (
     <p className='errorMsg'>No Data Found</p>
 ):(
